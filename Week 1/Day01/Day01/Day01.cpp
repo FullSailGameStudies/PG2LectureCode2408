@@ -7,6 +7,7 @@
 #include "Calculator.h"
 #include <Console.h>
 #include <DataReader.h>
+#include <Menu.h>
 
 int AddOne(int localNumber)
 {
@@ -24,6 +25,22 @@ void print(const std::vector<std::string>& names)
 
 int main()
 {
+    Menu cafe;
+    cafe.AddMenuItem("Waffles", 8.99F);
+    cafe.AddMenuItem("Cheese Pizza", 12.99F);
+    cafe.AddMenuItem("Fish Tacos", 9.99F);
+    cafe.ShowMenu();
+    float foundPrice = cafe.FindPrice("Cheese pizza");
+    std::cout << "\n\nCheese Pizza costs " << foundPrice << "\n";
+    bool removed = cafe.RemoveMenuItem("Fish Tacos");
+    if (removed)
+        std::cout << "Fish Tacos was removed from the menu.\n";
+    else
+        std::cout << "Fish Tacos was not on the menu.\n";
+    cafe.ShowMenu();
+    std::cin.get();
+
+
     Console::ResizeWindow(150, 30);
     DataReader dataReader;
     //
