@@ -62,7 +62,7 @@ int main()
     FullSailCourse pg1;
     std::string courseName = "PG2 2408";
     pg2.SetName(courseName);//copying the courseName to the methods parameter
-    //pg1.SetName("PG1 2408");
+    pg1.SetName("PG1 2408");
     std::string myCourse = pg2.GetName();
     std::cout << "My course this month: " << myCourse << "\n";
     std::cin.get();

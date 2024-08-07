@@ -4,11 +4,11 @@
 class FullSailCourse
 {
 public:
-	std::string GetName();
-	void SetName(std::string& name);//passing BY REFERENCE. making an alias. PREVENTS a copy and is more efficient.
+	std::string GetName() const;
+	void SetName(const std::string& name);//passing BY REFERENCE. making an alias. PREVENTS a copy and is more efficient.
 
-	void GetGrades(std::vector<float>& grades);
-	void PrintGrades(const std::vector<float>& grades);//pass by ref to prevent a copy
+	void GetGrades(std::vector<float>& grades) const;
+	void PrintGrades(const std::vector<float>& grades) const;//pass by ref to prevent a copy
 private:
 	std::string name_;
 };

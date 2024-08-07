@@ -3,18 +3,18 @@
 #include <iostream>
 #include <iomanip>
 
-std::string FullSailCourse::GetName()
+std::string FullSailCourse::GetName() const
 {
 	return name_;
 }
-void FullSailCourse::SetName(std::string& name)//name is a reference to a variable in a different scope
+void FullSailCourse::SetName(const std::string& name)//name is a reference to a variable in a different scope
 {
 	//name is an ALIAS to the courseName variable
 	if (!name.empty() && name.size() < 256)
 		name_ = name;
 }
 
-void FullSailCourse::GetGrades(std::vector<float>& grades)
+void FullSailCourse::GetGrades(std::vector<float>& grades) const
 {
 	srand(time(NULL));//seeds the random # generator
 	//fill the vector with 10 grades
@@ -26,7 +26,7 @@ void FullSailCourse::GetGrades(std::vector<float>& grades)
 	}
 }
 
-void FullSailCourse::PrintGrades(const std::vector<float>& grades)//const prevents the method from modifying the parameter
+void FullSailCourse::PrintGrades(const std::vector<float>& grades) const//const prevents the method from modifying the parameter
 {
 	std::cout << "\nGrades for " << name_ << "\n"; //" " is a string
 	for (int i = 0; i < grades.size(); i++)
