@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "FullSailCourse.h"
+#include <iomanip>
 
 bool postFix(std::string& hero)
 {
@@ -38,6 +40,32 @@ void printInfo(const std::vector<int>& scores)
 
 int main()
 {
+    //_stricmp(char* s1,char* s2) - char* means a string
+    //std::string != char*. 
+    //.c_str() returns the std::string's char*
+    // _stricmp returns an int
+    //      < 0 means s1 less than s2
+    //      == 0 means s1 equals s2
+    //      > 0 means s1 greater than s2
+    std::string s1 = "Batman", s2 = "Aquaman";
+    int comparisonResult = _stricmp(s1.c_str(), s2.c_str());
+    if (comparisonResult < 0)
+        std::cout << s1 << " is LESS THAN " << s2 << "\n";
+    else if (comparisonResult == 0)
+        std::cout << s1 << " EQUALS " << s2 << "\n";
+    else //if(comparisonResult > 0)
+        std::cout << s1 << " is GREATER THAN " << s2 << "\n";
+    std::cin.get();
+
+
+    FullSailCourse pg2;
+    FullSailCourse pg1;
+    std::string courseName = "PG2 2408";
+    pg2.SetName(courseName);//copying the courseName to the methods parameter
+    //pg1.SetName("PG1 2408");
+    std::string myCourse = pg2.GetName();
+    std::cout << "My course this month: " << myCourse << "\n";
+    std::cin.get();
     /*
         ╔══════════════════════════════╗
         ║Parameters: Pass by Reference.║
@@ -47,21 +75,30 @@ int main()
         NOTE: if the method assigns a new value to the parameter, the variable used when calling the method will change too.
             This is because the parameter is actually just a new name for the other variable.
     */
-    std::string spider = "Spiderman";
-    bool isEven = postFix(spider);
-    std::string evenResult = (isEven) ? "TRUE" : "FALSE";
-    std::cout << spider << "\n" << "Is Even postfix? " << evenResult << "\n";
-
+    {
+        std::string spider = "Spiderman";
+        bool isEven = postFix(spider);
+        std::string evenResult = (isEven) ? "TRUE" : "FALSE";
+        std::cout << spider << "\n" << "Is Even postfix? " << evenResult << "\n";
+    }
 
     /*
         CHALLENGE 1:
 
-            Write a method to fill the vector of floats with grades.
+            Write a method to FullSailCourse to fill the vector of floats with grades.
             1) pass it in by reference
             2) add 10 grades to the vector
+            3) after calling the method, loop and print the vector in main
 
     */
     std::vector<float> grades;
+    pg2.GetGrades(grades);//passed by reference so pg2 will fill our vector
+    std::cout << "\nGrades for " << pg2.GetName() << "\n"; //" " is a string
+    for (int i = 0; i < grades.size(); i++)
+    {
+        std::cout << std::setw(10) << std::right << grades[i] << '\n'; // ' ' is a char
+    }
+    std::cin.get();
 
 
 
