@@ -35,6 +35,9 @@ void print(const std::vector<int>& scores)
 
 void printInfo(const std::vector<int>& scores)
 {
+    //size() - returns the # of items that have been added to the vector
+    //capacity() - returns the length of the internal array
+    // size is ALWAYS <= capacity
     std::cout << "size: " << scores.size() << "\tcapacity: " << scores.capacity() << "\n";
 }
 
@@ -107,9 +110,18 @@ int main()
         This is the way you pass by reference and prevent the method from changing the variable.
     */
     std::vector<int> highScores;
-    for (int i = 0; i < 10; ++i)
-        highScores.push_back(rand());
+    highScores.reserve(10);
+    printInfo(highScores);//size: 0   capacity: 0
+    for (int i = 0; i < 11; ++i)
+    {
+        highScores.push_back(rand() % 5000);
+        printInfo(highScores);//size: 0   capacity: 0
+    }
     float avg = average(highScores);
+
+
+    //erase the 5th item (index 4)
+    highScores.erase(highScores.begin() + 4);
 
 
 
@@ -141,24 +153,43 @@ int main()
     */
     print(highScores);
 
-    for (size_t i = 0; i < highScores.size();)
+    for (size_t i = 0; i < highScores.size();i++)
     {
         if (highScores[i] < 2500)
+        {
             highScores.erase(highScores.begin() + i);
-        else
-            ++i;
+            i--;//move the index back 1 so we re-evaluate this index again
+        }
     }
-
-
-    /*
-        INTERMEDIATE LEVEL...
-        a way using std::remove_if and a lambda
-    highScores.erase(
-        std::remove_if(highScores.begin(),
-            highScores.end(),
-            [](int score) { return score < 2500; }),
-        highScores.end());
-    */
+    //OR...  
+    //for (size_t i = 0; i < highScores.size();)
+    //{
+    //    if (highScores[i] < 2500)
+    //    {
+    //        highScores.erase(highScores.begin() + i);
+    //    }
+    //    else
+    //        i++;//only increment i IF you do not erase
+    //}
+    ////OR...use a reverse for loop
+    //for (int i = highScores.size() - 1; i >= 0;i--)
+    //{
+    //    if (highScores[i] < 2500)
+    //    {
+    //        highScores.erase(highScores.begin() + i);
+    //    }
+    //}
+    ////OR...
+    ////using iterator loop to erase multiple items...
+    //for (auto iter = highScores.begin(); iter != highScores.end(); )
+    //{
+    //    if (*iter < 2500)
+    //    {
+    //        iter = highScores.erase(iter);
+    //    }
+    //    else
+    //        iter++;
+    //}
 
 
     print(highScores);
