@@ -93,11 +93,7 @@ int main()
     */
     std::vector<float> grades;
     pg2.GetGrades(grades);//passed by reference so pg2 will fill our vector
-    std::cout << "\nGrades for " << pg2.GetName() << "\n"; //" " is a string
-    for (int i = 0; i < grades.size(); i++)
-    {
-        std::cout << std::setw(10) << std::right << grades[i] << '\n'; // ' ' is a char
-    }
+    pg2.PrintGrades(grades);
     std::cin.get();
 
 

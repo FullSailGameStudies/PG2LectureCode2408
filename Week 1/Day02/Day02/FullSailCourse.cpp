@@ -1,5 +1,7 @@
 #include "FullSailCourse.h"
 #include <time.h>
+#include <iostream>
+#include <iomanip>
 
 std::string FullSailCourse::GetName()
 {
@@ -22,4 +24,14 @@ void FullSailCourse::GetGrades(std::vector<float>& grades)
 		float grade = (rand() % 10001)/100.0f;//limits the # to 0 - 100.00
 		grades.push_back(grade);
 	}
+}
+
+void FullSailCourse::PrintGrades(const std::vector<float>& grades)//const prevents the method from modifying the parameter
+{
+	std::cout << "\nGrades for " << name_ << "\n"; //" " is a string
+	for (int i = 0; i < grades.size(); i++)
+	{
+		std::cout << std::setw(10) << std::right << grades[i] << '\n'; // ' ' is a char
+	}
+	//grades.clear();//this MODIFIES the vector
 }
