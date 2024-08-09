@@ -8,8 +8,16 @@ std::string postFix(std::string fileName, int postFixNumber = 1)
     return fileName + "_" + std::to_string(postFixNumber);
 }
 
+bool GetRandom(int& rando)
+{
+    rando = rand() % 25000;
+    return rando % 2 == 0;
+}
+
 int main()
 {
+    int number;
+    bool isEven = GetRandom(number);
 
     /*
         ╔═══════════════════════════════╗
@@ -73,18 +81,22 @@ int main()
         3) passing a vector to the constructor of another vector
 
     */
-    std::vector<int> scores = { 1,2,3,4,5 };
+    std::vector<int> scores = { 1,2,3,4,5,6,7,8,9,0 };
 
     //1) copy each element manually
     std::vector<int> scores2;
+    scores2.reserve(scores.size());
     for (size_t i = 0; i < scores.size(); i++)
         scores2.push_back(scores[i]);
+    std::cout << scores2.size() << ":" << scores2.capacity() << "\n";
 
     //2) assignment "=" operator
     std::vector<int> scores3 = scores;
+    std::cout << scores3.size() << ":" << scores3.capacity() << "\n";
 
     //3) passing a vector to the constructor of another vector
     std::vector<int> scores4(scores);
+    std::cout << scores4.size() << ":" << scores4.capacity() << "\n";
 
 
 
