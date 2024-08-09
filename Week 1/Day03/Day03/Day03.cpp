@@ -1,11 +1,9 @@
-﻿// Day03.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-#include <iostream>
+﻿#include <iostream>
 #include <string>
 #include <vector>
+#include "ThemeSong.h"
 
-std::string postFix(std::string fileName, int postFixNumber = 1) //postFixNumber is optional
+std::string postFix(std::string fileName, int postFixNumber = 1)
 {
     return fileName + "_" + std::to_string(postFixNumber);
 }
@@ -28,7 +26,7 @@ int main()
     */
     std::string file = "highScores";
 
-    std::string postfile = postFix(file); //if you don't pass a value, the default value will be used for the optional parameter
+    std::string postfile = postFix(file); 
     std::cout << postfile << "\n";
 
     postfile = postFix(file, 5); //if a value is passed, it will be used for the optional parameter
@@ -39,14 +37,23 @@ int main()
     /*
         CHALLENGE 1:
 
-            Write a method called batTheme.
-            Add an optional parameter to determine how many "na" are printed. The default value should be 13.
+            Add a method to ThemeSong called batTheme.
+            Add an default parameter to determine how many "na" are printed. 
+            The default value should be 13.
             
             If the calling code does not pass a value for the parameter, print "na na na na na na na na na na na na na Batman".
             If a value is passed, print the number of "na" equal to the value.
             EX: if 6 is passed, print "na na na na na na Batman"
 
+            here in main, call it twice: 
+                once without an argument and 
+                once with an argument
+
     */
+    ThemeSong themes;
+    themes.batTheme();
+    themes.batTheme();
+    themes.batTheme(25);
 
 
 
