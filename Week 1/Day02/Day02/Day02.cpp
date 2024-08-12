@@ -180,16 +180,16 @@ int main()
     //    }
     //}
     ////OR...
-    ////using iterator loop to erase multiple items...
-    //for (auto iter = highScores.begin(); iter != highScores.end(); )
-    //{
-    //    if (*iter < 2500)
-    //    {
-    //        iter = highScores.erase(iter);
-    //    }
-    //    else
-    //        iter++;
-    //}
+    //using iterator loop to erase multiple items...
+    for (auto iter = highScores.begin(); iter != highScores.end(); )
+    {
+        if (*iter < 2500)
+        {
+            iter = highScores.erase(iter);
+        }
+        else
+            iter++;
+    }
 
 
     print(highScores);
