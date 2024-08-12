@@ -57,7 +57,12 @@ void bubbleSort(std::vector<std::string>& A)
 		for (int i = 1; i <= n-1; i++)
 		{
 			//if A[i - 1] > A[i] then
-			if (A[i - 1] > A[i])
+			//_stricmp case insensitive
+			//returns an int...
+			//   if < 0  means less than
+			//   if == 0 means equal
+			//   if > 0 greater than
+			if (_stricmp(A[i - 1].c_str(), A[i].c_str()) > 0)//case insensitive
 			{
 				//swap(A, i - 1, i)????
 				//OG swap
@@ -76,6 +81,22 @@ void bubbleSort(std::vector<std::string>& A)
 		--n;
 	} while (swapped);//while swapped
 }//end procedure... return? break?  }
+
+void SayHi(int i = 0)
+{
+	//recursion causes a stack overflow if it loops too many times
+	//we need an exit condition to prevent a stack overflow AND to end our recursive loop
+	//int i = 0;
+	if (i >= 20) return;
+
+	//if (i < 20)//loops when this is true
+	{
+		std::cout << i << ": Hello Gotham!\n";
+		i++;
+		SayHi(i);//calling itself causes a recursive LOOP b/c it executes the block of code again
+		
+	}
+}//return statement jumps to this }
 
 int main()
 {
@@ -140,8 +161,15 @@ int main()
 		All recursive methods need an exit condition, something that prevents the loop from continuing.
 
 	*/
+
+	int random = 20;
+	for (size_t i = 0; i < random; i++)
+	{
+	}
+
+	SayHi();
 	int N = 0;
-	recursiveLoop(N);
+	//recursiveLoop(N);
 
 
 
