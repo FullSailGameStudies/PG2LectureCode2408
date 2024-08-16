@@ -12,6 +12,16 @@ enum class Weapon
     Sword, Axe, Spear, Mace
 };
 
+void PrintGrades(const std::map<std::string, double>& grades)
+{
+    std::cout << "\nGrades for DCU\n";
+    for (auto& [student,grade] : grades)
+    {
+        std::cout << std::setw(15) << std::left << student;
+        std::cout << std::setw(7) << std::right << grade << "\n";
+    }
+}
+
 
 int main()
 {
@@ -27,20 +37,21 @@ int main()
         erase(key) -- returns the # of items removed
 
     */
-    std::map<Weapon, int> backpack;
-    auto inserted = backpack.insert(std::make_pair(Weapon::Sword, 5));
-    backpack[Weapon::Axe] = 3;
+    std::map<Weapon, int> dorasBackpack;
+    auto inserted = dorasBackpack.insert(std::make_pair(Weapon::Sword, 5));
+    dorasBackpack[Weapon::Axe] = 3;
 
-    size_t numberRemoved = backpack.erase(Weapon::Sword);
+    //erase removes the key-value pair
+    size_t numberRemoved = dorasBackpack.erase(Weapon::Sword);
     if (numberRemoved > 0)
         std::cout << "The Swords were removed.\n";
     else
         std::cout << "Sword was not found in the map.\n";
 
-    std::map<Weapon, int>::iterator found = backpack.find(Weapon::Axe);
-    if (found != backpack.end())
+    std::map<Weapon, int>::iterator found = dorasBackpack.find(Weapon::Axe);
+    if (found != dorasBackpack.end() && found->second < 5)
     {
-        backpack.erase(found);
+        dorasBackpack.erase(found);
         std::cout << "The Axes were removed.\n";
     }
     else
@@ -73,4 +84,25 @@ int main()
     grades["Clark"] = rand() % 101;
     grades["Arthur"] = rand() % 101;
     grades["Barry"] = rand() % 101;
+
+    while (true)
+    {
+        PrintGrades(grades);
+        std::cout << "Student to drop: ";
+        std::string studentName;
+        std::getline(std::cin, studentName);
+        if (studentName.empty()) break;
+
+        auto foundStudent = grades.find(studentName);
+        if (foundStudent != grades.end())
+        {
+            std::cout << studentName << " had a grade of " << foundStudent->second << ".\n";
+            grades.erase(foundStudent);
+            std::cout << studentName << " was dropped from the course.\n";
+        }
+        else {
+            std::cout << studentName << " was not enrolled.\n";
+        }
+
+    }
 }
