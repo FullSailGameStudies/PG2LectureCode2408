@@ -1,6 +1,6 @@
 #include "Sword.h"
 
-float Sword::Attack()
+float Sword::Attack() const
 {
 	float damage = 0;
 	
