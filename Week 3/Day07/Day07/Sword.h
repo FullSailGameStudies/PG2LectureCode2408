@@ -7,6 +7,10 @@ enum WeaponMaterial //collection of named ints
 	Iron,
 	Steel
 };
+
+//IF you do not add a constructor, the compiler will give you a default constructor that has no code.
+//a default constructor does not have any parameters
+//IF you add a constructor (ctor), the compiler's constructor is NO LONGER available
 class Sword
 {
 	//OOD (object-oriented DESIGN)
@@ -20,6 +24,16 @@ class Sword
 	//	any number of these sections
 
 public://anyone can see it
+
+	//constructors -- special methods that initialize the members (fields) of the class
+	//	special methods
+	//		1) they cannot have a return type, not even void
+	//		2) they must have the same name as the class (casing included)
+	//	you can overload them
+	//	they can be public, private, or protected
+	Sword(WeaponMaterial material, float length, bool isTwoHanded);
+	Sword(WeaponMaterial material);
+
 	//methods: the behavior of an object
 	//naming convention: PascalNamingConvention
 	float Attack() const;//declaration in the header, definition in the cpp
@@ -79,15 +93,15 @@ private://ONLY ME
 	//	different naming conventions in the industry:
 		//	m_fLength, m_length, _length, mLength, length_
 	//	whatever convention you use, BE CONSISTENT
-	float length_;
+	float length_ = 0.5f;
 	bool twoHanded_;
 	WeaponMaterial material_;
 
 	void SomeMethod(float& length)
 	{
-		length += 5;
+		length += 5.0f;
 		float swordLength;//camelCasingNamingConvention
-		length_ += 0.2;
+		length_ += 0.2f;
 	}
 };
 

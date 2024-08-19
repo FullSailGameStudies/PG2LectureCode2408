@@ -2,6 +2,7 @@
 //
 
 #include <iostream>
+#include "Sword.h"
 
 
 /*              CLASSESS
@@ -44,6 +45,15 @@
 
 int main()
 {
+
+    //create a Sword object.
+    Sword sting(WeaponMaterial::Iron, 1.f, false);//MUST call a constructor
+    Sword slasher(WeaponMaterial::Steel, 20, true);
+    Sword standardShort(WeaponMaterial::Stone);
+
+
+
+
     /*
         CHALLENGE:
 
