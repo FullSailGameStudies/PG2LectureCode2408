@@ -8,6 +8,16 @@ enum WeaponMaterial //collection of named ints
 	Steel
 };
 
+//ACCESS MODIFIERS:
+// classes...
+//		private (DEFAULT): ONLY the class can see it
+//		public: ALL CODE can see it
+//		protected: only this class and the class' descendents can see it
+// 
+//in C++, structs are the SAME as a class EXCEPT the default access is PUBLIC
+// structs are light-weight "classes"
+//		normally used for data classes. all they provide are public fields.
+
 //IF you do not add a constructor, the compiler will give you a default constructor that has no code.
 //a default constructor does not have any parameters
 //IF you add a constructor (ctor), the compiler's constructor is NO LONGER available
@@ -86,7 +96,7 @@ public://anyone can see it
 protected://only ME and my descendents can see it
 private://ONLY ME
 
-	//fields: the data or variables of the class (object)
+	//fields: the data or member variables of the class (object)
 	//naming convention: camelCasingNamingConvention
 	//	sets the field apart from parameters or local variables in a method
 	//	so developers can visually tell the difference

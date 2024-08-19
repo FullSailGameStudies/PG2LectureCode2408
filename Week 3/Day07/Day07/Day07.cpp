@@ -51,7 +51,11 @@ int main()
     Sword slasher(WeaponMaterial::Steel, 20, true);
     Sword standardShort(WeaponMaterial::Stone);
 
+    float damage = sting.Attack();
+    damage = slasher.Attack();
 
+    //ctor means constructor
+    //_stricmp
 
 
     /*
