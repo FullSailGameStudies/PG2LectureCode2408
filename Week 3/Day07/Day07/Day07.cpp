@@ -45,11 +45,6 @@
 int main()
 {
     /*
-        Lecture code: add a Car class
-    
-    */
-
-    /*
         CHALLENGE:
 
             Create a Person class.
