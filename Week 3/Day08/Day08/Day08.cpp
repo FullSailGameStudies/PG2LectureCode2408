@@ -6,10 +6,17 @@
 #include "Inheritance.h"
 #include "Polymorphism.h"
 #include "Car.h"
+#include "FlyingCar.h"
 
 
 int main()
 {
+	int year = 1988;
+	std::string make = "Ford", model = "Mustang GT 5.0";
+	Car mustangGT(year, make, model);
+	int altitude = 1000;
+	float speed = 150;
+	FlyingCar DeLorean(altitude, speed, year, make, model);//when we create a flyingcar, we have to also create the Car parts
 	/*
         ╔═══════════════╗
         ║  Inheritance  ║
