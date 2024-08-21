@@ -11,11 +11,19 @@ public:
 	Car(int year, std::string make, std::string model)
 		: mModelYear(year), mMake(make), mModel(model), mFuelLevel(0), mMaxFuelLevel(15)
 	{	}
-	std::string vehicleInformation();
+	virtual std::string vehicleInformation();
 
 	void refuel()
 	{
 		mFuelLevel = mMaxFuelLevel;
+	}
+	void refuel(int fuelToAdd)
+	{
+		mFuelLevel = std::min(mMaxFuelLevel, mFuelLevel + fuelToAdd);
+	}
+	void refuel(short fuelToAdd)
+	{
+		mFuelLevel = std::min(mMaxFuelLevel, mFuelLevel + fuelToAdd);
 	}
 
 	//getter (accessor)

@@ -14,9 +14,15 @@ int main()
 	int year = 1988;
 	std::string make = "Ford", model = "Mustang GT 5.0";
 	Car mustangGT(year, make, model);
+	mustangGT.refuel();//compile-time polymorphism
+	mustangGT.refuel(5);//compile-time polymorphism
 	int altitude = 1000;
 	float speed = 150;
-	FlyingCar DeLorean(altitude, speed, year, make, model);//when we create a flyingcar, we have to also create the Car parts
+	FlyingCar DeLorean(altitude, speed, 1985, "DeLorean", "DMC-15");//when we create a flyingcar, we have to also create the Car parts
+
+	std::cout << mustangGT.vehicleInformation() << "\n";
+	std::cout << DeLorean.vehicleInformation() << "\n";
+	std::cin.get();
 	/*
         ╔═══════════════╗
         ║  Inheritance  ║
@@ -46,6 +52,11 @@ int main()
 			Lecture Code: add a FlyingCar class that derives from Car
              
     */
+
+	Account savings1, savings2;
+	savings1.mBalance = 10;
+	savings2.mBalance = 20;
+	Account savings3 = savings1 + savings2;
 
 
 

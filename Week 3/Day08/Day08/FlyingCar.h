@@ -20,6 +20,9 @@ public:
 		//mFuelLevel = 10;//cannot access the private members of Car
 	}
 
+	//optionally add the override keyword for greater development protection
+	std::string vehicleInformation() override;//create the override declaration
+
 	float MaxAirspeed() const { return maxAirspeed_; }
 	void MaxAirspeed(float newAirspeed) {
 		if (newAirspeed > 0 && newAirspeed < 1000)

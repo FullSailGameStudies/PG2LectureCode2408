@@ -30,9 +30,15 @@ public:
 */
 class Account
 {
-private:
+public:
 	double mBalance;
 
+	Account operator+(Account& otherAccount)
+	{
+		Account newAcct;
+		newAcct.mBalance = mBalance + otherAccount.mBalance;
+		return newAcct;
+	}
 public:
 };
 
