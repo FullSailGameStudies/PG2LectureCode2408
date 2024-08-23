@@ -41,6 +41,67 @@ int main()
 	std::cout << mustangGT.vehicleInformation() << "\n";
 	std::cout << DeLorean.vehicleInformation() << "\n";
 	Car::CarReport();
+
+
+	//STACK objects
+	Car myCar(2024, "Tesla", "Cybertruck");//car is on the stack
+	Car& todaysRide = myCar;//todaysRide is the SAME OBJECT as myCar.
+	Car* pCar = &myCar;//pCar points to myCar. the SAME object
+
+	//HEAP objects.  (dynamic memory)
+	//  use the 'new' keyword
+	//	heap memory needs to be cleaned up
+	//	for every 'new', we need to call 'delete' on the object when it's no longer needed
+	Car* heapCar = new Car(2024, "Tesla", "Cybertruck");
+
+	//use the ->  (pointer notation) to access the members
+	heapCar->refuel();
+
+	Car* currentCar = heapCar;//copy the POINTER (memory address). points to the same car as heapCar
+	delete heapCar;//clean up the memory. release the memory to be used for something else
+	heapCar = nullptr;//so we don't accidentally try to use the memory
+	if (heapCar != nullptr)
+	{//check if nullptr before trying to use
+	}
+
+	//use unique_ptr<type> to create and manage the dynamic memory for us
+	// unique_ptrs are possessive -- they won't allow another variable to point to the same object
+	// std::make_unique<type>(ctor parameters here)
+	//		type is what class you want to create
+	//		parameters are what the class' constructor needs
+	//std::unique_ptr<Car>  instead of Car*
+	//std::make_unique<Car>(2024, "Tesla", "Cybertruck")  instead of new Car(2024, "Tesla", "Cybertruck")
+
+	//STEP 1: create the unique_ptr
+	std::unique_ptr<Car> uptrCar = std::make_unique<Car>(1992, "Hummer", "H-1");
+	uptrCar->refuel();
+	//std::unique_ptr<Car> myHummer = uptrCar;
+
+	//STEP 2: add the unique_ptrs to a vector
+	std::vector<Car> GsGarage;//will only store Car objects
+	std::vector<std::unique_ptr<Car>> jaysGarage;
+	jaysGarage.push_back(std::move(uptrCar));//move reassigns ownership of the unique_ptr
+
+
+	//will UPCAST the FlyingCar * to a Car *.
+	//NO information from the flyingcar is lost
+	jaysGarage.push_back(std::make_unique<FlyingCar>(altitude, speed, 1985, "DeLorean", "DMC-15"));
+
+	//whenever unique_ptrs variables go out of scope, the ptr is deleted
+
+	std::cout << "\n\nJay's Garage\n";
+	for (std::unique_ptr<Car>& garageCar : jaysGarage)
+	{
+		//the method that is called is dependent on the object
+		//if the object was created as a Car, then the Car's method
+		//if the object was created as a FlyingCar, then the FlyingCar's method
+		//happens at RUNTIME
+		//	there is a slight performance hit for this
+		std::cout << garageCar->vehicleInformation() << "\n";
+	}
+
+
+
 	std::cin.get();
 	/*
         ╔═══════════════╗
