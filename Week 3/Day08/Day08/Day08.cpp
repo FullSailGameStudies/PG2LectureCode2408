@@ -7,10 +7,28 @@
 #include "Polymorphism.h"
 #include "Car.h"
 #include "FlyingCar.h"
+#include <vector>
 
 
+//static variables never get removed from memory while the app is running
+
+void PrintMe()
+{
+	static int i = 0;//only creates i once when it is first called
+	//section of memory for static objects
+	std::cout << i << " ";
+	i++;
+}
 int main()
 {
+	for (int i = 0; i < 10; i++)
+		PrintMe();
+
+	std::cin.get();
+
+	//Vehicle myCurrentRide;//cannot create an instance of an Abstract class
+	std::vector<Vehicle> myGarage;
+
 	int year = 1988;
 	std::string make = "Ford", model = "Mustang GT 5.0";
 	Car mustangGT(year, make, model);
@@ -22,6 +40,7 @@ int main()
 
 	std::cout << mustangGT.vehicleInformation() << "\n";
 	std::cout << DeLorean.vehicleInformation() << "\n";
+	Car::CarReport();
 	std::cin.get();
 	/*
         ╔═══════════════╗

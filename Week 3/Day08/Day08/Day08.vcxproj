@@ -130,6 +130,7 @@
     <ClCompile Include="Car.cpp" />
     <ClCompile Include="Day08.cpp" />
     <ClCompile Include="FlyingCar.cpp" />
+    <ClCompile Include="Vehicle.cpp" />
     <ClCompile Include="Weapon.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +143,7 @@
     <ClInclude Include="nested.h" />
     <ClInclude Include="Polymorphism.h" />
     <ClInclude Include="static.h" />
+    <ClInclude Include="Vehicle.h" />
     <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
