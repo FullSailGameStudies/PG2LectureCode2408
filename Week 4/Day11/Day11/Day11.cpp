@@ -32,7 +32,30 @@ int main()
                 separates data inside a car. EX: 1967;Ford;Shelby Mustang GT500
 
     */
+    Car myRide(2025, "Tesla", "X-Plane");
+    //save this car to a file
+    //we want the Car class to save (or serialize) its data to a file
+    //1. OPEN the file
+    std::string filePath = "car.csv";
+    std::ofstream outputFile(filePath);//WHERE will it create the file?
+    //in the working directory of the app
+    // MOST OF THE TIME, the debugger will change where this goes
+    //check if it is open
+    if (outputFile.is_open())
+    {
+        //2. call SERIALIZE on the object
+        myRide.serialize(outputFile, '*');
+    }
+    else
+    {
+        std::cout << filePath << " could not be opened.\n";
+    }
+    //3. CLOSE the file
+    outputFile.close();
 
+
+    std::cout << "\nMonday's Ride\n";
+    //myRide.serialize(std::cout, '\t');
 
 
     /*
@@ -49,4 +72,27 @@ int main()
             split each car to get the car details
 
     */
+
+    //1. OPEN the file
+    std::ifstream inputFile(filePath);
+    if (inputFile.is_open())
+    {
+        //2. READ the line
+        std::string line;
+        std::getline(inputFile, line);
+
+        //create a Car using the line
+        Car todaysRide(line, '*');
+
+        std::cout << "\nToday's Ride\n";
+        std::cout << todaysRide.ModelYear() 
+            << " " << todaysRide.Make() 
+            << " " << todaysRide.Model() << "\n";
+    }
+    else
+    {
+        std::cout << filePath << " could not be opened.\n";
+    }
+    //3. CLOSE the file
+    inputFile.close();
 }
