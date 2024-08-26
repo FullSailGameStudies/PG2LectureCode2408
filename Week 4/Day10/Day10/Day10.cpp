@@ -49,7 +49,30 @@ int main()
         Lecture code: set a filePath variable, open an output file, write some csv data to it
     */
 
-
+    std::string path = "C:\\temp\\2408\\";
+    std::string fileName = "pg2_2408.csv";
+    std::string fullPath = path + fileName;//C:\\temp\\2408\\pg2_2408.csv
+    //1. OPEN the file
+    std::ofstream outputFile(fullPath);//ATTEMPT to open the file
+    //check if the file is open
+    char delimiter = '$';
+    if (outputFile.is_open())
+    {
+        //if open, write out to the file
+        //2. WRITE to the file
+        outputFile << "Batman rules.";
+        outputFile 
+            << delimiter << 5 
+            << delimiter << 13.7
+            << delimiter <<true 
+            << delimiter << "Is aquaman ok in the head?";
+    }
+    else
+    {
+        std::cout << fullPath << " could not be found.\n";
+    }
+    //3. CLOSE the file
+    outputFile.close();
     /*
 
         ╔═══════════════╗
