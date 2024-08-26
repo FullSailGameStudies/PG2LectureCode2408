@@ -86,7 +86,54 @@ int main()
         Lecture code: using the filePath variable, open an input file, use getline to read a line, print the line
     */
 
+    std::cout << "Enter something please: ";
+    std::string input;
+    std::getline(std::cin, input);//gets a line of data from the cin stream. stops when a newline (enter) is encountered
+    std::cout << input << "\n";
 
+    //1. OPEN the file
+    std::ifstream inputFile(fullPath);
+    //check if the file is open before reading it
+    if (inputFile.is_open())
+    {
+        //2. READ the file
+        //get a line from the file
+        std::string line;
+        std::getline(inputFile, line, '\n');//gets a line of data from the cin stream. stops when a newline (enter) is encountered
+        std::cout << line << "\n";
+
+        //use a stringstream to get the data from the string
+        //line is just a string. it is NOT a stream.
+        std::stringstream lineStream(line);//create a stream on the line
+        std::string data;
+        //reads "Batman rules."
+        std::getline(lineStream, data, delimiter);//stop when it hits the delimiter
+        std::cout << data << "\n";
+
+        //reads "5"
+        std::getline(lineStream, data, delimiter);//stop when it hits the delimiter
+        int intData = std::stoi(data);
+        std::cout << intData << "\n";
+        
+        //reads "13.7"
+        std::getline(lineStream, data, delimiter);//stop when it hits the delimiter
+        double dblData = std::stod(data);
+        std::cout << dblData << "\n";
+
+        //reads "1"
+        std::getline(lineStream, data, delimiter);//stop when it hits the delimiter
+        bool boolData = data == "1";
+        std::cout << boolData << "\n";
+
+        //reads "Is aquaman ok in the head"
+        std::getline(lineStream, data, delimiter);//stop when it hits the delimiter
+        std::cout << data << "\n";
+    }
+    else {
+        std::cout << fullPath << " could not be opened.\n";
+    }
+    //3. CLOSE the file
+    inputFile.close();
     /*
 
         ╔═════════════════════╗
